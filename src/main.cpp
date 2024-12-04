@@ -7,5 +7,6 @@ int main(int argc, char *argv[]) {
   char s = 's';
   char i = 'i';
   char a = 'a';
+  char x = 'x';
   return 0;
 }
