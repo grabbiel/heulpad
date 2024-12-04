@@ -33,7 +33,7 @@ jobs:
         run: |
           cat > Formula/heulpad.rb << EOL
           class Heulpad < Formula
-            desc "Your CLI tool description here"
+            desc "Manage content from inside the terminal"
             homepage "https://github.com/grabbiel/heulpad"
             url "https://github.com/grabbiel/heulpad/archive/refs/tags/${{ steps.tag.outputs.VERSION }}.tar.gz"
             sha256 "${{ steps.sha.outputs.SHA }}"
@@ -42,7 +42,7 @@ jobs:
             depends_on "cmake" => :build
 
             def install
-              system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+              system "cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_TYPE=Release", *std_cmake_args
               system "cmake", "--build", "build"
               bin.install "build/heulpad"
             end
