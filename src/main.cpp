@@ -6,5 +6,6 @@ int main(int argc, char *argv[]) {
   char c = 'c';
   char s = 's';
   char i = 'i';
+  char a = 'a';
   return 0;
 }
