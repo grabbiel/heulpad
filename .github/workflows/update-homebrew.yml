@@ -46,24 +46,29 @@ jobs:
               system "cmake", "--build", "build"
               bin.install "build/heulpad"
 
-              (pkgshare/".config").write <<~EOS
-                version=0.0.1
-                author=RUMPO
-              EOS
+              (etc/"heulpad").mkpath
+
+              unless (etc/"heulpad/config").exist?
+                (etc/"heulpad/config").write<<~EOS
+                  
+                  [settings]
+                  default_folder=/tmp
+                  auto_backup=true
+                EOS
+              end
               
-              (pkgshare/"data").mkpath
             end
 
             def caveats
               <<~EOS
                 Configuration files are installed to:
-                #{pkgshare}
+                #{etc}/heulpad/config
               EOS
             end
 
             test do
               system "#{bin}/heulpad", "--version"
-          assert_predicate pkgshare/".config", :exist?
+          assert_predicate etc/"heulpad/config", :exist?
             end
           end
           EOL
