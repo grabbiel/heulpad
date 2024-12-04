@@ -1,1 +1,6 @@
-int main(int argc, char *argv[]) { return 0; }
+
+int main(int argc, char *argv[]) {
+  int x = 1;
+  ++x;
+  return 0;
+}
