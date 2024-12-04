@@ -2,14 +2,5 @@
 int main(int argc, char *argv[]) {
   char *str;
   char f = 'f';
-  char u = 'u';
-  char c = 'c';
-  char s = 's';
-  char i = 'i';
-  char a = 'a';
-  char x = 'x';
-  char d = ';';
-  char dd = 'f';
-  char ddd = 'f';
   return 0;
 }
