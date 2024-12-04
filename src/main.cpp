@@ -8,5 +8,7 @@ int main(int argc, char *argv[]) {
   x++;
   x += 3;
   x *= 5;
+  int *y = &x;
+  ++y;
   return 0;
 }
