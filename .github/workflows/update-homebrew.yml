@@ -47,10 +47,8 @@ jobs:
               bin.install "build/heulpad"
 
               (etc/"heulpad").mkpath
-
               unless (etc/"heulpad/config").exist?
-                (etc/"heulpad/config").write<<~EOS
-                  
+                (etc/"heulpad/config").write <<~EOS
                   [settings]
                   default_folder=/tmp
                   auto_backup=true
