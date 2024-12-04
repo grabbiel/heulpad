@@ -46,15 +46,24 @@ jobs:
               system "cmake", "--build", "build"
               bin.install "build/heulpad"
 
-              home_dir = ENV["HOME"]
-              heulpad_dir = "#{home_dir}/.heulpad"
-              system "mkdir", "-p", heulpad_dir
-              system "chmod", "700", heulpad_dir
+              (pkgshare/".config").write <<~EOS
+                version=0.0.1
+                author=RUMPO
+              EOS
+              
+              (pkgshare/"data").mkpath
+            end
+
+            def caveats
+              <<~EOS
+                Configuration files are installed to:
+                #{pkgshare}
+              EOS
             end
 
             test do
               system "#{bin}/heulpad", "--version"
-              assert_predicate File.directory?(File.join(ENV["HOME"], ".heulpad"))
+          assert_predicate pkgshare/".config", :exist?
             end
           end
           EOL
