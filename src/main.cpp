@@ -10,5 +10,6 @@ int main(int argc, char *argv[]) {
   char x = 'x';
   char d = ';';
   char dd = 'f';
+  char ddd = 'f';
   return 0;
 }
