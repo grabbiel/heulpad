@@ -46,6 +46,11 @@ jobs:
               system "cmake", "--build", "build"
               bin.install "build/heulpad"
 
+              mv bin/"heulpad", bin/"heulpad.real"
+
+              (bin/"heulpad").write_env_script bin/"heulpad.real",
+                HEULPAD_CONFIG: "#{etc}/heulpad/config"
+
               (etc/"heulpad").mkpath
               unless (etc/"heulpad/config").exist?
                 (etc/"heulpad/config").write <<~EOS
@@ -54,7 +59,6 @@ jobs:
                   auto_backup=true
                 EOS
               end
-              
             end
 
             def caveats
@@ -66,7 +70,7 @@ jobs:
 
             test do
               system "#{bin}/heulpad", "--version"
-          assert_predicate etc/"heulpad/config", :exist?
+              assert_predicate etc/"heulpad/config", :exist?
             end
           end
           EOL
