@@ -8,5 +8,6 @@ int main(int argc, char *argv[]) {
   char i = 'i';
   char a = 'a';
   char x = 'x';
+  char d = ';';
   return 0;
 }
