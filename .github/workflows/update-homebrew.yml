@@ -50,7 +50,7 @@ jobs:
             end
 
             def post_install
-              system "chmod", "700", File.expand_path("~/.heulpad")
+              system "chmod", "700", File.join(Dir.home, ".heulpad")
             end
 
             def caveats
