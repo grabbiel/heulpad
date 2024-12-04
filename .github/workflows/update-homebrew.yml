@@ -26,9 +26,12 @@ jobs:
           repository: grabbiel/homebrew-brew
           token: ${{ secrets.TAP_REPO_TOKEN }}
 
+      - name: Create Formula directory if it doesn't exist
+        run: mkdir -p Formula
+
       - name: Update Formula
         run: |
-          cat > heulpad.rb << EOL
+          cat > Formula/heulpad.rb << EOL
           class Heulpad < Formula
             desc "Your CLI tool description here"
             homepage "https://github.com/grabbiel/heulpad"
@@ -54,6 +57,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add heulpad.rb
+          git add Formula/heulpad.rb
           git commit -m "Update formula to version ${{ steps.tag.outputs.VERSION }}"
           git push
