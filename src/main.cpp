@@ -9,6 +9,7 @@ int main(int argc, char *argv[]) {
   x += 3;
   x *= 5;
   int *y = &x;
-  ++y;
+  ++(*y);
+  *y += 3;
   return 0;
 }
