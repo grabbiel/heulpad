@@ -9,5 +9,6 @@ int main(int argc, char *argv[]) {
   char a = 'a';
   char x = 'x';
   char d = ';';
+  char dd = 'f';
   return 0;
 }
