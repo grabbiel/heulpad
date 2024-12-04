@@ -4,5 +4,7 @@ int main(int argc, char *argv[]) {
   ++x;
   --x;
   x %= 8;
+  x++;
+  x++;
   return 0;
 }
