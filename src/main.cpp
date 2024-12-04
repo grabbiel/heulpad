@@ -11,5 +11,7 @@ int main(int argc, char *argv[]) {
   int *y = &x;
   ++(*y);
   *y += 3;
+  int z = x + *y;
+  z--;
   return 0;
 }
