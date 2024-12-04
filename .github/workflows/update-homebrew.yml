@@ -46,7 +46,7 @@ jobs:
               system "cmake", "--build", "build"
               bin.install "build/heulpad"
 
-              (Dir.home/".heulpad").mkpath
+              (File.join(Dir.home, ".heulpad")).mkpath
             end
 
             def post_install
@@ -55,7 +55,7 @@ jobs:
 
             def caveats
               <<~EOS
-                User configuration datat is stored in ~/.heulpad
+                User configuration data is stored in ~/.heulpad
                 
                 To completely remove all data after uninstalling:
                   rm -rf ~/.heulpad
@@ -64,7 +64,7 @@ jobs:
 
             test do
               system "#{bin}/heulpad", "--version"
-              assert_predicate Dir.home/".heulpad", :directory?
+              assert_predicate File.join(Dir.home, ".heulpad"), :directory?
             end
           end
           EOL
