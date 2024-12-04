@@ -1,0 +1,59 @@
+name: Update Homebrew Formula
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get tag
+        id: tag
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Calculate SHA256
+        id: sha
+        run: |
+          URL="https://github.com/grabbiel/heulpad/archive/refs/tags/${{ steps.tag.outputs.VERSION }}.tar.gz"
+          SHA=$(curl -L $URL | shasum -a 256 | cut -d ' ' -f 1)
+          echo "SHA=$SHA" >> $GITHUB_OUTPUT
+
+      - name: Checkout homebrew-tap repo
+        uses: actions/checkout@v2
+        with:
+          repository: grabbiel/homebrew-tap
+          token: ${{ secrets.TAP_REPO_TOKEN }}
+
+      - name: Update Formula
+        run: |
+          cat > heulpad.rb << EOL
+          class Heulpad < Formula
+            desc "Your CLI tool description here"
+            homepage "https://github.com/grabbiel/heulpad"
+            url "https://github.com/grabbiel/heulpad/archive/refs/tags/${{ steps.tag.outputs.VERSION }}.tar.gz"
+            sha256 "${{ steps.sha.outputs.SHA }}"
+            license "MIT"
+
+            depends_on "cmake" => :build
+
+            def install
+              system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+              system "cmake", "--build", "build"
+              bin.install "build/heulpad"
+            end
+
+            test do
+              system "#{bin}/heulpad", "--version"
+            end
+          end
+          EOL
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add heulpad.rb
+          git commit -m "Update formula to version ${{ steps.tag.outputs.VERSION }}"
+          git push

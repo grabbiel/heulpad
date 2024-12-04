@@ -6,5 +6,7 @@ int main(int argc, char *argv[]) {
   x %= 8;
   x++;
   x++;
+  x += 3;
+  x *= 5;
   return 0;
 }

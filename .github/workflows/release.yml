@@ -6,22 +6,11 @@ on:
       - 'v*'
 
 jobs:
-  build:
-    runs-on: macos-latest
+  create_release:
+    runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Configure CMake
-      run: |
-        mkdir build
-        cd build
-        cmake -DCMAKE_BUILD_TYPE=Release ..
-    
-    - name: Build
-      run: |
-        cd build
-        make
     
     - name: Create Release
       id: create_release
@@ -33,13 +22,3 @@ jobs:
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
-    
-    - name: Upload Binary
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/heulpad
-        asset_name: heulpad
-        asset_content_type: application/octet-stream
