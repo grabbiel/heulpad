@@ -20,10 +20,10 @@ jobs:
           SHA=$(curl -L $URL | shasum -a 256 | cut -d ' ' -f 1)
           echo "SHA=$SHA" >> $GITHUB_OUTPUT
 
-      - name: Checkout homebrew-tap repo
+      - name: Checkout homebrew-brew repo
         uses: actions/checkout@v2
         with:
-          repository: grabbiel/homebrew-tap
+          repository: grabbiel/homebrew-brew
           token: ${{ secrets.TAP_REPO_TOKEN }}
 
       - name: Update Formula
