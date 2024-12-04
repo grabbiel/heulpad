@@ -45,10 +45,26 @@ jobs:
               system "cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_TYPE=Release", *std_cmake_args
               system "cmake", "--build", "build"
               bin.install "build/heulpad"
+
+              (Dir.home/".heulpad").mkpath
+            end
+
+            def post_install
+              system "chmod", "700", File.expand_path("~/.heulpad")
+            end
+
+            def caveats
+              <<~EOS
+                User configuration datat is stored in ~/.heulpad
+                
+                To completely remove all data after uninstalling:
+                  rm -rf ~/.heulpad
+              EOS
             end
 
             test do
               system "#{bin}/heulpad", "--version"
+              assert_predicate Dir.home/".heulpad", :directory?
             end
           end
           EOL
