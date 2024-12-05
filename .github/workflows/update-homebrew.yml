@@ -75,11 +75,17 @@ jobs:
               end
             end
 
+            def post_uninstall
+              rm_rf var/"heulpad/plugins"
+            end
+
             def caveats
               <<~EOS
                 Configuration: #{etc}/heulpad/config
                 Plugins: #{var}/heulpad/plugins
                 Plugins Registry: #{share}/heulpad/plugins.list
+
+                Note: Uninstalling will remove all plugins
               EOS
             end
 
