@@ -45,7 +45,9 @@ jobs:
             def install
               system "cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_TYPE=Release", *std_cmake_args
               system "cmake", "--build", "build"
+              
               bin.install "build/heulpad"
+              bin.install Dir["build/src/commands/**/heulpad-*"]
 
               mv bin/"heulpad", bin/"heulpad.real"
 
@@ -57,6 +59,13 @@ jobs:
               # Create plugins registry file
               (share/"heulpad/plugins.list").write <<~EOS
                 cloud
+              EOS
+
+              # Create Help file
+              (share/"heulpad/help.txt").write <<~EOS
+                enable: Enable and install plugin
+                disable: Disable an installed plugin
+                new: Initialize project in current directory
               EOS
 
               # Create wrapper with environment variables 
