@@ -62,7 +62,7 @@ jobs:
               # Create wrapper with environment variables 
               (bin/"heulpad").write_env_script bin/"heulpad.real",
                 HEULPAD_CONFIG: "#{etc}/heulpad/config",
-                HEULPAD_PLUGINS: "#{var}/heulpad/plugins"
+                HEULPAD_PLUGINS: "#{var}/heulpad/plugins",
                 HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list"
                
               # Create default config
