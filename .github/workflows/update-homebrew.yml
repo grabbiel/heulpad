@@ -85,7 +85,9 @@ jobs:
                 Plugins: #{var}/heulpad/plugins
                 Plugins Registry: #{share}/heulpad/plugins.list
 
-                Note: Uninstalling will remove all plugins
+                To completely remove all data after uninstalling:
+                  rm -rf #{var}/heulpad
+                  rm -rf #{etc}/heulpad
               EOS
             end
 
