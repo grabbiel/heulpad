@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # global collect 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp")
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(heulpad ${SOURCES})
 
 add_subdirectory(src/commands)

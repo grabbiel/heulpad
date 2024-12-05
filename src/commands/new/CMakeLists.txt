@@ -1,6 +1,6 @@
 file(GLOB_RECURSE SOURCES_NEW "*.cpp")
 
-add_executable(${PROJECT_NAME} ${SOURCES_NEW})
+add_executable(heulpad-new ${SOURCES_NEW})
 
 target_include_directories(heulpad-new
   PRIVATE

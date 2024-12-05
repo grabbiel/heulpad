@@ -8,11 +8,6 @@
  *
  * */
 int main(int argc, char *argv[]) {
-
-  printf("Argument count is %d\n", argc);
-  for (int i = 0; i < argc; ++i) {
-    printf("ar%d: %s\n", i + 1, argv[i]);
-  }
-
+  printf("Calling 'heulpad'\n");
   return 0;
 }
