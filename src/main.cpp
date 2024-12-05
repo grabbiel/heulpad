@@ -8,6 +8,10 @@
  *
  * */
 int main(int argc, char *argv[]) {
-  printf("Calling 'heulpad'\n");
+  if (argc > 1) {
+    printf("Will call 'heulpad %s'\n", argv[1]);
+    printf("Looking through %s\n", std::getenv("HEULPAD_LIBEXEC"));
+  } else
+    printf("Calling 'heulpad'\n");
   return 0;
 }
