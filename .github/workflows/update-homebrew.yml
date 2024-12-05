@@ -47,7 +47,9 @@ jobs:
               system "cmake", "--build", "build"
               
               bin.install "build/heulpad"
-              bin.install Dir["build/src/commands/**/heulpad-*"]
+              libexec.install Dir["build/src/commands/**/heulpad-*"]
+
+              chmod 0755, Dir[libexec/"heulpad-*"]
 
               mv bin/"heulpad", bin/"heulpad.real"
 
@@ -72,7 +74,8 @@ jobs:
               (bin/"heulpad").write_env_script bin/"heulpad.real",
                 HEULPAD_CONFIG: "#{etc}/heulpad/config",
                 HEULPAD_PLUGINS: "#{var}/heulpad/plugins",
-                HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list"
+                HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list",
+                HEULPAD_LIBEXEC: libexec
                
               # Create default config
               unless (etc/"heulpad/config").exist?
