@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]) {
   const char *config_path = std::getenv("HEULPAD_CONFIG");
   if (!config_path) {
-    printf("Could not find config path, I am serious\n");
+    printf("Could not find config path.\n");
   } else {
     printf("[SUCCESS] %s\n", config_path);
   }
