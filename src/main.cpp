@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
   if (!config_path) {
     printf("Could not find config path, I am serious\n");
   } else {
-    printf("[SUCCESS]: %s\n", config_path);
+    printf("[SUCCESS] %s\n", config_path);
   }
   return 0;
 }
