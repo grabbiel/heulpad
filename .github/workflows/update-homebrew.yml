@@ -39,6 +39,7 @@ jobs:
             sha256 "${{ steps.sha.outputs.SHA }}"
             license "MIT"
 
+            uses_from_macos "curl"
             depends_on "cmake" => :build
 
             def install
