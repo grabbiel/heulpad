@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < NCOMMANDS; ++i) {
       if (strcmp(argv[1], commands[i]) == 0) {
         /* ============================
-         * The system call to any man-page can be at most:
+         * System call to man-page can be at most:
          * ============================
          * 'man '                     4
          * 'heulpad-'                 8
