@@ -77,7 +77,6 @@ jobs:
                 HEULPAD_PLUGINS: "#{var}/heulpad/plugins",
                 HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list",
                 HEULPAD_LIBEXEC: libexec
-                HEULPAD_MAN: "#{share}/man/man1"
                
               # Create default config
               unless (etc/"heulpad/config").exist?

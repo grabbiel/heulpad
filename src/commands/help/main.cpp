@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstdlib>
 #include <string.h>
 
 #define NCOMMANDS 5
@@ -11,8 +12,23 @@ int main(int argc, char *argv[]) {
   if (argc > 1) {
     for (int i = 0; i < NCOMMANDS; ++i) {
       if (strcmp(argv[1], commands[i]) == 0) {
-        printf("[help]: Invoking man page 'heulpad-%s'\n", commands[i]);
-        return 0;
+        /* ============================
+         * The system call to any man-page can be at most:
+         * ============================
+         * 'man '                     4
+         * 'heulpad-'                 8
+         * max(<command>)            16
+         * ----------------------------
+         *                           28
+         *                          ~30
+         * */
+        char man_command[30];
+        if (strcmp(argv[1], "heulpad") == 0) {
+          snprintf(man_command, sizeof(man_command), "man heulpad");
+        } else {
+          snprintf(man_command, sizeof(man_command), "man heulpad-%s", argv[1]);
+        }
+        return std::system(man_command);
       }
     }
     fprintf(stderr,
