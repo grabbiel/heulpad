@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <unistd.h>
 /*
  * constants:
  * HEULPAD_PLUGINS
@@ -18,11 +19,33 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < NCOMMANDS; ++i) {
       if (strcmp(argv[1], commands[i]) == 0) {
         printf("Will call 'heulpad %s'\n", argv[1]);
-        printf("Looking through %s/heulpad-%s\n",
-               std::getenv("HEULPAD_LIBEXEC"), argv[1]);
+        const char *libexecpath = std::getenv("HEULPAD_LIBEXEC");
+        if (libexecpath == nullptr) {
+          fprintf(stderr,
+                  "Cannot determine environment variable HEULPAD_LIBEXEC");
+          return 1;
+        }
+        /* ============================
+         * The path to executable would be:
+         * ============================
+         * BASE HOMEBREW PATH     (<100)
+         * [Cellar] directory        (7)
+         * [heulpad] directory       (8)
+         * [version] directory     (<10)
+         * [libexec] directory       (8)
+         * <executable>            (<30)
+         * ----------------------------
+         *                          163
+         *                         ~165
+         * */
+        char exec_path[165] = "";
+        snprintf(exec_path, sizeof(exec_path), "%s/heulpad-%s", libexecpath,
+                 argv[1]);
+        printf("Calling %s\n", exec_path);
         return 0;
       }
     }
+
     fprintf(
         stderr,
         "'heulpad %s' is not a command\t\tSee heulpad --help for reference\n",
