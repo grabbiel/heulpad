@@ -48,6 +48,7 @@ jobs:
               
               bin.install "build/heulpad"
               libexec.install Dir["build/src/commands/**/heulpad-*"]
+              man1.install Dir["man/*.1"]
 
               chmod 0755, Dir[libexec/"heulpad-*"]
 
@@ -76,6 +77,7 @@ jobs:
                 HEULPAD_PLUGINS: "#{var}/heulpad/plugins",
                 HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list",
                 HEULPAD_LIBEXEC: libexec
+                HEULPAD_MAN: "#{share}/man/man1"
                
               # Create default config
               unless (etc/"heulpad/config").exist?

@@ -15,7 +15,10 @@ int main(int argc, char *argv[]) {
         return 0;
       }
     }
-    fprintf(stderr, "[help]: Invalid <command>\n");
+    fprintf(stderr,
+            "'heulpad help %s' is not a command\t\tSee heulpad --help for "
+            "reference\n",
+            argv[1]);
     return 1;
   }
 
