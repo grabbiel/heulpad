@@ -2,9 +2,10 @@
 #include <cstdlib>
 #include <string.h>
 
-#define NCOMMANDS 5
+#define NCOMMANDS 6
 #define NMAINFLAGS 5
-const char *commands[NCOMMANDS] = {"new", "enable", "help", "preview", "list"};
+const char *commands[NCOMMANDS] = {"heulpad", "new",     "enable",
+                                   "help",    "preview", "list"};
 const char *flags[NMAINFLAGS] = {"--version", "--help", "--config", "--logs",
                                  "--env"};
 
@@ -27,7 +28,7 @@ int main(int argc, char *argv[]) {
         if (strcmp(argv[0], "heulpad") == 0) {
           snprintf(man_command, sizeof(man_command), "man heulpad");
         } else {
-          snprintf(man_command, sizeof(man_command), "man heulpad-%s", argv[1]);
+          snprintf(man_command, sizeof(man_command), "man heulpad-%s", argv[0]);
         }
         return std::system(man_command);
       }
