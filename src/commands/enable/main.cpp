@@ -6,7 +6,6 @@ int main(int argc, char *argv[]) {
     }
     return 1;
   }
-
   const char *prefix = "usage: heulpad enable\n";
   return 0;
 }

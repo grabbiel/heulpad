@@ -29,7 +29,6 @@ int main(int argc, char *argv[]) {
         } else {
           snprintf(man_command, sizeof(man_command), "man heulpad-%s", argv[0]);
         }
-        printf("Calling '%s'\n", man_command);
         return std::system(man_command);
       }
     }
