@@ -43,8 +43,12 @@ int main(int argc, char *argv[]) {
         char exec_path[165] = "";
         snprintf(exec_path, sizeof(exec_path), "%s/heulpad-%s", libexecpath,
                  argv[1]);
-        printf("Calling %s\n", exec_path);
-        return execve(exec_path, argv + 2, environ);
+        char manpath[256];
+        snprintf(manpath, sizeof(manpath), "MANPATH=%s/man",
+                 std::getenv("HEULPAD_SHARE"));
+        const char *minimal_env[] = {"TERM=xterm-256color",
+                                     "MANPATH=/opt/homebrew/share/man", NULL};
+        return execve(exec_path, argv + 2, (char *const *)minimal_env);
       }
     }
 
