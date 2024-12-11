@@ -46,8 +46,7 @@ int main(int argc, char *argv[]) {
         char manpath[256];
         snprintf(manpath, sizeof(manpath), "MANPATH=%s/man",
                  std::getenv("HEULPAD_SHARE"));
-        const char *minimal_env[] = {"TERM=xterm-256color",
-                                     "MANPATH=/opt/homebrew/share/man", NULL};
+        const char *minimal_env[] = {"TERM=xterm-256color", manpath, NULL};
         return execve(exec_path, argv + 2, (char *const *)minimal_env);
       }
     }
