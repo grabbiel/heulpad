@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
           }
           while (fgets(manpath, 1024, fp) != NULL) {
             printf("%s\n", manpath);
+            printf("-----\n");
           }
           if (pclose(fp) == -1) {
             fprintf(stderr, "[heulpad]: Could not close buffer\n");
