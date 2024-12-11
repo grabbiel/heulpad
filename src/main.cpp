@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
         snprintf(exec_path, sizeof(exec_path), "%s/heulpad-%s", libexecpath,
                  argv[1]);
         printf("Calling %s\n", exec_path);
-        return 0;
+        return execve(exec_path, argv + 2, nullptr);
       }
     }
 
