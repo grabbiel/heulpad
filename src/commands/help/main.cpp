@@ -10,10 +10,9 @@ const char *flags[NMAINFLAGS] = {"--version", "--help", "--config", "--logs",
 
 int main(int argc, char *argv[]) {
   if (argc > 0) {
+    printf("argc = %d\n", argc);
     for (int i = 0; i < NCOMMANDS; ++i) {
-      printf("argv[0] = %s\n", argv[0]);
-      printf("argv[1] = %s\n", argv[1]);
-      if (strcmp(argv[1], commands[i]) == 0) {
+      if (strcmp(argv[0], commands[i]) == 0) {
         /* ============================
          * System call to man-page can be at most:
          * ============================
@@ -25,7 +24,7 @@ int main(int argc, char *argv[]) {
          *                          ~30
          * */
         char man_command[31];
-        if (strcmp(argv[1], "heulpad") == 0) {
+        if (strcmp(argv[0], "heulpad") == 0) {
           snprintf(man_command, sizeof(man_command), "man heulpad");
         } else {
           snprintf(man_command, sizeof(man_command), "man heulpad-%s", argv[1]);
@@ -36,7 +35,7 @@ int main(int argc, char *argv[]) {
     fprintf(stderr,
             "'heulpad help %s' is not a command\t\tSee heulpad --help for "
             "reference\n",
-            argv[1]);
+            argv[0]);
     return 1;
   }
 
