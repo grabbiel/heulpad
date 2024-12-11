@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
   const int prefix_len = strlen(prefix);
   printf("%s[%s] [%s]\n", prefix, flags[0], flags[1]);
   printf("%*s[%s] [%s]\n", prefix_len, "", flags[2], flags[3]);
-  printf("%*s[%s]\n\n\n", prefix_len, "", flags[4]);
+  printf("%*s[%s]\n", prefix_len, "", flags[4]);
 
   return 0;
 }
