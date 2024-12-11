@@ -10,8 +10,6 @@
  *
  * */
 
-extern char **environ;
-
 // All available commands
 #define NCOMMANDS 5
 const char *commands[NCOMMANDS] = {"new", "enable", "help", "preview", "list"};
