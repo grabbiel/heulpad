@@ -10,6 +10,8 @@
  *
  * */
 
+extern char **environ;
+
 // All available commands
 #define NCOMMANDS 5
 const char *commands[NCOMMANDS] = {"new", "enable", "help", "preview", "list"};
@@ -42,7 +44,7 @@ int main(int argc, char *argv[]) {
         snprintf(exec_path, sizeof(exec_path), "%s/heulpad-%s", libexecpath,
                  argv[1]);
         printf("Calling %s\n", exec_path);
-        return execve(exec_path, argv + 2, nullptr);
+        return execve(exec_path, argv + 2, environ);
       }
     }
 
