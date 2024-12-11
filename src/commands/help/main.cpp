@@ -10,6 +10,7 @@ const char *flags[NMAINFLAGS] = {"--version", "--help", "--config", "--logs",
                                  "--env"};
 
 int main(int argc, char *argv[]) {
+  setenv("TERM", "xterm-256color", 1);
   if (argc > 0) {
     for (int i = 0; i < NCOMMANDS; ++i) {
       if (strcmp(argv[0], commands[i]) == 0) {
