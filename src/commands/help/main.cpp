@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
          *                           28
          *                          ~30
          * */
-        char man_command[31];
+        char man_command[30];
         if (strcmp(argv[0], "heulpad") == 0) {
           snprintf(man_command, sizeof(man_command), "man heulpad");
         } else {
