@@ -11,6 +11,7 @@ const char *flags[NMAINFLAGS] = {"--version", "--help", "--config", "--logs",
 int main(int argc, char *argv[]) {
   if (argc > 0) {
     for (int i = 0; i < NCOMMANDS; ++i) {
+      printf("argv[0] = %s\n", argv[0]);
       printf("argv[1] = %s\n", argv[1]);
       if (strcmp(argv[1], commands[i]) == 0) {
         /* ============================
