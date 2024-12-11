@@ -76,7 +76,7 @@ jobs:
                 HEULPAD_CONFIG: "#{etc}/heulpad/config",
                 HEULPAD_PLUGINS: "#{var}/heulpad/plugins",
                 HEULPAD_PLUGINS_REGISTRY: "#{share}/heulpad/plugins.list",
-                HEULPAD_LIBEXEC: libexec
+                HEULPAD_LIBEXEC: libexec,
                 HEULPAD_SHARE: "#{share}"
                
               # Create default config
