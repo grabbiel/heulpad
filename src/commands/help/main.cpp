@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
          * */
         char man_command[30];
         if (strcmp(argv[0], "heulpad") == 0) {
-          snprintf(man_command, sizeof(man_command), "man heulpad");
+          snprintf(man_command, sizeof(man_command), "man git-status");
         } else {
           snprintf(man_command, sizeof(man_command), "man heulpad-%s", argv[0]);
         }
