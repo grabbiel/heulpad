@@ -11,7 +11,6 @@ const char *flags[NMAINFLAGS] = {"--version", "--help", "--config", "--logs",
 
 int main(int argc, char *argv[]) {
   if (argc > 0) {
-    printf("argc = %d\n", argc);
     for (int i = 0; i < NCOMMANDS; ++i) {
       if (strcmp(argv[0], commands[i]) == 0) {
         /* ============================
@@ -30,6 +29,7 @@ int main(int argc, char *argv[]) {
         } else {
           snprintf(man_command, sizeof(man_command), "man heulpad-%s", argv[0]);
         }
+        printf("Calling '%s'\n", man_command);
         return std::system(man_command);
       }
     }
