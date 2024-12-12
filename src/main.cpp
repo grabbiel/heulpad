@@ -16,6 +16,7 @@
 #define NCOMMANDS 4
 const char *commands[NCOMMANDS] = {"new", "enable", "preview", "list"};
 
+// TODO: Add man as a dependency, either in brew formula or inside main.exe
 int main(int argc, char *argv[]) {
   // ensure executables are reachable
   const char *libexecpath = std::getenv("HEULPAD_LIBEXEC");
