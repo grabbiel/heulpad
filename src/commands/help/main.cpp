@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
       }
     }
     fprintf(stderr,
-            "'heulpad help %s' is not a command\t\tSee heulpad --help for "
+            "heulpad %s' is not a command\t\tSee heulpad --help for "
             "reference\n",
             argv[0]);
     return 1;

@@ -73,7 +73,6 @@ int main(int argc, char *argv[]) {
              sharepath);
     minimal_env[1] = env_manpath;
     snprintf(exec_path, sizeof(exec_path), "%s/heulpad-help", libexecpath);
-    printf("Will execute %s\n", exec_path);
     return execve(exec_path, argv + 2, (char *const *)minimal_env);
   }
   /*====== heulpad <command> ======= */
