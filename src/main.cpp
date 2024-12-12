@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
    *                         ~165
    * */
   char exec_path[165];
-  const char *minimal_env[] = {"TERM=xterm-256color", NULL};
+  const char *minimal_env[] = {"TERM=xterm-256color", NULL, NULL};
 
   /* ====== heulpad help ======
    * extra ENV variable is needed
@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
              sharepath);
     minimal_env[1] = env_manpath;
     snprintf(exec_path, sizeof(exec_path), "%s/heulpad-help", libexecpath);
+    printf("Will execute %s\n", exec_path);
     return execve(exec_path, argv + 2, (char *const *)minimal_env);
   }
   /*====== heulpad <command> ======= */
