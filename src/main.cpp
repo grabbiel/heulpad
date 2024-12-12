@@ -77,6 +77,9 @@ int main(int argc, char *argv[]) {
     return execve(exec_path, argv + 2, (char *const *)minimal_env);
   }
   /*====== heulpad <command> ======= */
+  char env_libexec[185];
+  snprintf(env_libexec, sizeof(env_libexec), "HEULPAD_LIBEXEC=%s", libexecpath);
+  minimal_env[1] = env_libexec;
   for (int i = 0; i < NCOMMANDS; ++i) {
     if (strcmp(argv[1], commands[i]) == 0) {
       snprintf(exec_path, sizeof(exec_path), "%s/heulpad-%s", libexecpath,
