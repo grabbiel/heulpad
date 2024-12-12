@@ -19,7 +19,7 @@ const char *commands[NCOMMANDS] = {"new", "enable", "help", "preview", "list"};
 int main(int argc, char *argv[]) {
   const char *libexecpath = std::getenv("HEULPAD_LIBEXEC");
   if (libexecpath == nullptr) {
-    fprintf(stderr, "Cannot determine environment variable HEULPAD_LIBEXEC");
+    fprintf(stderr, "Cannot determine environment variable HEULPAD_LIBEXEC\n");
     return 1;
   }
   const char *minimal_env[] = {"TERM=xterm-256color", NULL, NULL};
@@ -41,6 +41,12 @@ int main(int argc, char *argv[]) {
          *                         ~165
          * */
         if (strcmp(argv[1], "help") == 0) {
+          const char *sharepath = std::getenv("HEULPAD_SHARE");
+          if (sharepath == nullptr) {
+            fprintf(stderr, "[heulpad]: Cannot determine environment variable "
+                            "HEULPAD_SHARE\n");
+            return 1;
+          }
           FILE *fp;
           char manpath[1024];
           fp = popen("manpath", "r");
@@ -49,17 +55,20 @@ int main(int argc, char *argv[]) {
             return 1;
           }
           while (fgets(manpath, 1024, fp) != NULL) {
-            printf("%s\n", manpath);
-            printf("-----\n");
+            char *result = manpath;
+            result = strchr(result, '\n');
+            if (result)
+              *result = '\0';
           }
           if (pclose(fp) == -1) {
             fprintf(stderr, "[heulpad]: Could not close buffer\n");
             return 1;
           }
-          // char manpath[256];
-          // snprintf(manpath, sizeof(manpath), "MANPATH=%s/man",
-          //          std::getenv("HEULPAD_SHARE"));
-          return 0;
+          char env_manpath[1024];
+          snprintf(env_manpath, sizeof(env_manpath),
+                   "MANPATH=%s:%s/man:usr/local/share/man:/usr/share/man",
+                   manpath, sharepath);
+          minimal_env[1] = env_manpath;
         }
         snprintf(exec_path, sizeof(exec_path), "%s/heulpad-%s", libexecpath,
                  argv[1]);
